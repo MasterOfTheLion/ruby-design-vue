@@ -118,6 +118,13 @@ export default defineComponent({
    */
   setup(props, { emit }) {
     const { size, disabled } = toRefs(props)
+    const prefixCls = getPrefixCls('btn')
+    const groupContext = inject(buttonGroupInjectionKey, undefined)
+    const _size = computed(() => size.value ?? groupContext?.size);
+    const _disabled = computed(() => {
+      Boolean(disabled.value || groupContext?.disabled)
+    });
+    const {mergedSize: _mergedSize, mergedDisabled}
   },
 })
 </script>
